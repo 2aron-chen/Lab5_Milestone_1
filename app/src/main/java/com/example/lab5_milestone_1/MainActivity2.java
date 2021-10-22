@@ -3,7 +3,9 @@ package com.example.lab5_milestone_1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,9 +37,12 @@ public class MainActivity2 extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
         switch (item.getItemId()){
             case R.id.ic_logout:
                 Intent intent = new Intent(this, MainActivity.class);
+                SharedPreferences sharedPreferences = getSharedPreferences("user_1", Context.MODE_PRIVATE);
+                sharedPreferences.edit().remove(MainActivity.usernameKey).apply();
                 startActivity(intent);
                 return true;
             default:
