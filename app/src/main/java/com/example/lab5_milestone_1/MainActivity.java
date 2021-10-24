@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+    final public static String usernameKey = "username";
 
     public void onButtonClick(View view){
         EditText myTextField = (EditText) findViewById(R.id.editTextTextPersonName);
@@ -24,11 +25,9 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("message", s);
         startActivity(intent);
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String usernameKey = "username";
 
         SharedPreferences sharedPreferences = getSharedPreferences("user_1", Context.MODE_PRIVATE);
 
