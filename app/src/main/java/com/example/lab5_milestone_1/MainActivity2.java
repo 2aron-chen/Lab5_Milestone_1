@@ -31,14 +31,13 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         textView = (TextView) findViewById(R.id.textView);
-        Intent intent = getIntent();
-        String str = intent.getStringExtra("message");
-        textView.setText("Hello " + str);
+
 
         // Fetch username from sharedPreferences
         String usernameKey = "username";
         SharedPreferences sharedPreferences = getSharedPreferences("user_1", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString(usernameKey, "");
+        textView.setText("Hello " + username);
 
         // Get SQLiteDatabase instance
         Context context = getApplicationContext();
@@ -66,6 +65,7 @@ public class MainActivity2 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -76,8 +76,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
 
-    Context context = getApplicationContext();
-    SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("note", Context.MODE_PRIVATE, null);
+
 
 
     @Override

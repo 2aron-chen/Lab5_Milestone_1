@@ -17,12 +17,14 @@ public class MainActivity extends AppCompatActivity {
         String str = myTextField.getText().toString();
         SharedPreferences sharedPreferences = getSharedPreferences("user_1", Context.MODE_PRIVATE);
         sharedPreferences.edit().putString("username", str).apply();
-        goToActivity2(str);
+        //goToActivity2(str);
+        Intent intent = new Intent(this, MainActivity2.class);
+        intent.putExtra("message", str); startActivity(intent);
     }
 
-    public void goToActivity2(String s){
+    public void goToActivity2(){
         Intent intent = new Intent(this, MainActivity2.class);
-        intent.putExtra("message", s);
+        //intent.putExtra("message", s);
         startActivity(intent);
     }
     @Override
@@ -32,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("user_1", Context.MODE_PRIVATE);
 
         if(!sharedPreferences.getString(usernameKey, "").equals("")){
-            String username = sharedPreferences.getString(usernameKey, "");
-            goToActivity2(username);
+            //String username = sharedPreferences.getString(usernameKey, "");
+            goToActivity2();
         } else{
             setContentView(R.layout.activity_main);
         }
