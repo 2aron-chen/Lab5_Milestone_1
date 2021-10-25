@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +25,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         editText = (TextView) findViewById(R.id.editText);
         Intent intent = getIntent();
-        int noteid = intent.getIntExtra("noteid", 0);
+            int noteid = intent.getIntExtra("noteid", -1);
 
         if (noteid != -1) {
             Note note = MainActivity2.notes.get(noteid);
@@ -41,7 +42,9 @@ public class MainActivity3 extends AppCompatActivity {
         Context context = getApplicationContext();
         SQLiteDatabase sqLiteDatabase = context.openOrCreateDatabase("notes", Context.MODE_PRIVATE, null);
         DBHelper dbHelper = new DBHelper(sqLiteDatabase);
-        String username = "<get from shared preferences>";
+        SharedPreferences sharedPreferences = getSharedPreferences("user_1", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "");
+
         // Save information to database.
         String title;
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");

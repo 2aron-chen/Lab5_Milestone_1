@@ -2,18 +2,19 @@ package com.example.lab5_milestone_1;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 public class DBHelper {
     SQLiteDatabase sqLiteDatabase;
 
-    public DBHelper(SQLiteDatabase sqliteDatabase) {
+    public DBHelper(SQLiteDatabase sqLiteDatabase) {
         this.sqLiteDatabase = sqLiteDatabase;
     }
     public void createTable() {
-        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS notes " +
-                "(id INTEGER PRIMARY KEY, username TEXT , date TEXT, title TEXT, content TEXT, src TEXT)");
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS notes" +
+                "(id INTEGER PRIMARY KEY, username TEXT, date TEXT, title TEXT, content TEXT, src TEXT)");
     }
     public ArrayList<Note> readNotes (String username) {
         createTable();
@@ -44,6 +45,7 @@ public class DBHelper {
     public void saveNotes (String username, String title, String content, String date) {
         createTable();
         sqLiteDatabase.execSQL(String.format("INSERT INTO notes (username, date, title, content) VALUES ('%s', '%s', '%s', '%s')", username, date, title, content));
+        Log.i("printing save note", "printing save note");
     }
 
     public void updateNote(String title, String date , String content , String username) {
