@@ -51,7 +51,7 @@ public class MainActivity3 extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         String date = dateFormat.format(new Date());
 
-        Log.i("noteid", String.valueOf(noteid));
+        //Log.i("noteid", String.valueOf(noteid));
         if (noteid == -1){ //Add note.
             title = "NOTE_" + (MainActivity2.notes.size() + 1);
             dbHelper.saveNotes(username, title, content, date);
